@@ -57,7 +57,7 @@ private fun GameRatingNavHost(
 
         }
         composable(GameRatingScreens.StartScreen.name) {
-            StartScreen(navController)
+            StartScreen(navController, viewModel)
         }
     }
 

@@ -10,7 +10,15 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.compose.NavHost
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import nl.pdik.level3.madlevel3task1_gamerating.ui.screens.GameRatingScreens
+import nl.pdik.level3.madlevel3task1_gamerating.ui.screens.StartScreen
 import nl.pdik.level3.madlevel3task1_gamerating.ui.theme.MadLevel3Task1GameRatingTheme
+import nl.pdik.level3.madlevel3task1_gamerating.viewModel.GameViewModel
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,22 +30,44 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    Greeting("Android")
+                    val navController = rememberNavController()
+                    GameRatingNavHost(navController,modifier = Modifier)
                 }
             }
         }
     }
 }
 
+
 @Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
+private fun GameRatingNavHost(
+    navController: NavHostController, modifier: Modifier
+) {
+    val viewModel: GameViewModel = viewModel()
+    NavHost(
+        navController = navController,
+        startDestination = GameRatingScreens.StartScreen.name,
+        modifier = modifier
+    ){
+        composable(route = GameRatingScreens.RatingScreen.name)
+        {
+
+        }
+        composable(GameRatingScreens.SummaryScreen.name) {
+
+        }
+        composable(GameRatingScreens.StartScreen.name) {
+            StartScreen(navController)
+        }
+    }
+
 }
+
 
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
     MadLevel3Task1GameRatingTheme {
-        Greeting("Android")
+
     }
 }

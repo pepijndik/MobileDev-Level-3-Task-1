@@ -15,7 +15,9 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import nl.pdik.level3.madlevel3task1_gamerating.ui.screens.GameRatingScreen
 import nl.pdik.level3.madlevel3task1_gamerating.ui.screens.GameRatingScreens
+import nl.pdik.level3.madlevel3task1_gamerating.ui.screens.GameRatingSummaryScreen
 import nl.pdik.level3.madlevel3task1_gamerating.ui.screens.StartScreen
 import nl.pdik.level3.madlevel3task1_gamerating.ui.theme.MadLevel3Task1GameRatingTheme
 import nl.pdik.level3.madlevel3task1_gamerating.viewModel.GameViewModel
@@ -51,10 +53,10 @@ private fun GameRatingNavHost(
     ){
         composable(route = GameRatingScreens.RatingScreen.name)
         {
-
+            GameRatingScreen(navController,viewModel)
         }
         composable(GameRatingScreens.SummaryScreen.name) {
-
+            GameRatingSummaryScreen(navController,viewModel)
         }
         composable(GameRatingScreens.StartScreen.name) {
             StartScreen(navController, viewModel)
